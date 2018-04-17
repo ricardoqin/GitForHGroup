@@ -1,6 +1,7 @@
 <template>
 	<div>
-		home
+		新品
+		
 	</div>
 </template>
 
@@ -27,4 +28,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+	p{
+		font-size:0.74rem;
+	}
 </style>
