@@ -73,25 +73,25 @@
 				</ul>
 			</div>
 		</div>
-			
 	</div>
 </template>
 
 <script>
 import router from '../router'
+import axios from 'axios'
 export default {
   name: 'home',
 
   data () {
     return {
-
     }
   },
   methods:{
   	handleClick(sortclass){
-  		router.push(`/sortlist/sortclass=${sortclass}`)
+  		router.push(`/sortlist/sortclass=${sortclass}`);
   	}
   }
+  
 }
 </script>
 

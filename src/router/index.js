@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import home from '../components/home'
 import sortlist from '../components/sortlist'
+import sortclass from '../components/sortclass'
 import sortdetail from '../components/sortdetail'
 import cart from '../components/cart'
 import login from '../components/login'
@@ -20,14 +21,14 @@ const router =  new Router({
     },
     {
     	path:'/sortlist',
-    	component:sortlist
+    	component:sortlist,
     },
     {
-      path:'/sortlist/:id',
-      component:sortlist
+        path:'/sortlist/:id',
+        component:sortclass
     },
     {
-    	path:'/detail/:id',
+    	path:'/detail/:sortclass=id',
     	component:sortdetail
     },
     {
