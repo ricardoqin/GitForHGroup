@@ -19,8 +19,11 @@ body,p,h1,h2,h3,h4,h5,h6,ul,li,dl,dt,dd,input,form{
 body,html{
   width:100%;
   height:100%;
-  font-size:12px;
 }
+html{
+  font-size:1.23rem;
+}
+
 li{
   list-style: none;
 }
