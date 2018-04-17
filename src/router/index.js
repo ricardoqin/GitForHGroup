@@ -23,11 +23,15 @@ const router =  new Router({
     	component:sortlist
     },
     {
-    	path:'/detail:id',
+      path:'/sortlist/:id',
+      component:sortlist
+    },
+    {
+    	path:'/detail/:id',
     	component:sortdetail
     },
     {
-    	path:'/cart:id',
+    	path:'/cart/:id',
     	component:cart,
     	meta: { requiresAuth: true }//需验证是否登录
     },
