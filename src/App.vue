@@ -20,10 +20,6 @@ body,html{
   width:100%;
   height:100%;
 }
-html{
-  font-size:1.23rem;
-}
-
 li{
   list-style: none;
 }
