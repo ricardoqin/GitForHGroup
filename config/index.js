@@ -18,6 +18,14 @@ module.exports = {
             // pathRewrite: {
             //     '^/v4/api': '/v4/api'
             //   }
+        },
+        '/v2': {
+            target: 'https://m.wowdsgn.com',
+            host: 'm.wowdsgn.com',
+            changeOrigin:true,
+            // pathRewrite: {
+            //     '^/v4/api': '/v4/api'
+            //   }
         }
     },
 
