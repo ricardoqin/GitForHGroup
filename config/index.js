@@ -18,7 +18,20 @@ module.exports = {
             // pathRewrite: {
             //     '^/v4/api': '/v4/api'
             //   }
-        }
+        },
+        '/registerreq':{
+            target: 'http://localhost:3000',
+//          host: 'localhost:3000',
+//          http://localhost:3000/register1
+            changeOrigin:true,
+//      		pathRewrite: {
+//		           '^/register': ''
+//		         }
+       },
+       '/loginreq':{
+            target: 'http://localhost:3000',
+            changeOrigin:true,
+       },
     },
 
     // Various Dev Server settings

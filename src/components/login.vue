@@ -7,22 +7,54 @@
 		</header>
 		<div class="mainbox">
 			<ul>
-				<li>
-					<a href="#" class="pwd-login" :class="{active:isPwdchoice}" @click="handleClick">密码登录</a>
+				<!--<li>
+					<a href="#"   :class="ischoice?'active':''" @click="handleClick" :key="1">密码登录</a>
 				</li>
 				<li>
-					<a href="#" class="msg-login" :class="{active:isMsgchoice}" @click="handleClick">短信登录</a>
-				</li>
+					<a href="#"  :class="ischoice?'active':''" @click="handleClick" :key="2">短信登录</a>
+				</li>-->
+				<!--<li v-for="data,index in loginway"><a href="#" v-bind:class="{ active: ischoice }"  @click="handleClick">{{data}}</a></li>-->
+				<li v-for="data,index in loginway"><a href="#" :class="currentIndex==index?'active':''"  @click="handleClick(index)" :key="index">{{data}}</a></li>
 			</ul>
-			<div class="inputbox">
-				<div class="telnamebox">
-					<input type="text" id="username"  placeholder="请输入手机号"/>
+			<div class="pwdlogin" v-show="isShow" :key="0">
+				<div class="inputbox">
+					<div class="telnamebox">
+						<input type="text" v-model="telNum" id="username-pwdlogin"  placeholder="请输入手机号"/>
+					</div>
+					<div class="pwdbox">
+						<input type="password" v-model="pwdStr" class="pwd" id="pwd-pwdlogin" placeholder="请输入密码"/>
+						<a href="#">忘记密码？</a>
+					</div>
 				</div>
-				<div class="pwdbox">
-					<input type="password" id="pwd" placeholder="请输入密码"/>
-					<a href="#">忘记密码？</a>
+				<div class="errmsg">
+					<span v-show="err">{{errmsg}}</span>
+				</div>
+				<button @click="surebtn" class="subbtn">确认</button>
+				<div class="foot">
+					<ul>
+						<li><input type="checkbox" value="" />一个月内记住登录</li>
+						<li>快速注册</li>
+					</ul>
 				</div>
 			</div>
+			<div class="meglogin" v-show="!isShow" :key="1">
+				<div class="inputbox">
+					<div class="telnamebox">
+						<input type="text" id="username-meglogin"  placeholder="请输入手机号"/>
+					</div>
+					<div class="pwdbox">
+						<input type="password" class="pwd" id="pwd-msglogin" placeholder="请输入验证码"/>
+						<a href="#">获取验证码</a>
+					</div>
+				</div>
+				<button @click="surebtn1" class="subbtn">确认</button>
+				<div class="foot">
+					<ul>
+						<li>快速注册</li>
+					</ul>
+				</div>
+			</div>
+			
 		</div>
 	</div>	
 
@@ -30,21 +62,64 @@
 
 <script>
 //	import router from "../router/index"
+import axios from'axios';
 export default {
 
   name: 'home',
 
   data () {
     return {
-		isPwdchoice:true,
-		isMsgchoice:false
+		ischoice:true,
+		loginway:["密码登录","短信登录"],
+		currentIndex:0,
+		isShow:true,
+		telNum:"",
+		pwdStr:"",
+		err:true,
+		errmsg:""
     }
   },
   methods:{
-  	handleClick:function(){
-  		this.isPwdchoice = !this.isPwdchoice;
-  		this.isMsgchoice = !this.isMsgchoice;
-  	}
+  	handleClick:function(index){
+		this.currentIndex = index;
+//		this.ischoice = !this.ischoice;
+		if(this.currentIndex == 0){
+			this.isShow = true;
+		}
+		if(this.currentIndex == 1){
+			this.isShow = false;
+		}
+  	},
+//	axios.get("/v4/api/billboard/home?__t=1523895165695").then(res=>{
+//				console.log(res.data);
+//
+//			}).catch(err=>{
+//				console.log(err);
+//			})
+	surebtn:function(){
+		console.log("aaa")
+		let telNum = this.telNum;
+		let pwdStr = this.pwdStr; 
+		axios.post('/loginreq',{
+			telNum,
+			pwdStr
+	  	}).then((res)=>{
+	  		if(res.data == true){
+	  			this.err = false;
+	  			console.log(this.err)
+	  		}else{
+	  			this.err = true;
+	  			this.errmsg = "手机号或密码错误，请重新输入"
+	  		}
+	  	}).catch(function(err){
+	  		console.log(err);
+	  	})
+	},
+
+	surebtn1:function(){
+		console.log("aaa")
+	}
+  	
   }
 }
 </script>
@@ -113,6 +188,16 @@ a{
 	margin-top: 0.3rem;
 	height: 2.9rem;
 	
+	.errmsg{
+	height:0.5rem;
+	
+	span{
+		font-size: 0.28rem;
+		color: orangered;
+		float: left;
+		margin-left: 0.3rem;
+	}
+	}
 	ul{
 		height: 0.88rem;
 		line-height: 0.88rem;
@@ -125,19 +210,21 @@ a{
 			padding: 0 0.24rem;
 		}
 		.active{
+			display: block;
 			color: #000;
 			height: 0.88rem;
+			line-height: 0.88rem;
 			border-bottom: 0.06rem solid #202020;
 		}
 	}
 	
 	
 	.inputbox{
-		width: 6.9rem;
+		width: 6.3rem;
 		padding: 0 0.3rem;
 		background: #FFFFFF;
 		margin: 0 auto;
-		
+		height: 2rem;
 		
 		input{
 			border: 0;
@@ -146,18 +233,47 @@ a{
 			border-bottom: 1px solid #eaeaea;
 			font-size: 0.28rem;
 			outline: none;
+			float: left;
 		}
 		
 		.pwdbox{
 			position: relative;
-			#pwd{
-				width: 95%;
+			.pwd{
+				width: 75%;
 			}
 			a{
-				width: 5%;
-				position: absolute;
-				
+				display: block;
+				width: 25%;
+				height: 1rem;
+				font-size: 0.28rem;
+				float: right;
+				line-height: 1rem;
+				border-bottom: 1px solid #eaeaea;
 			}
+		}
+	}
+}
+
+.subbtn{
+	margin: 0 auto;
+	vertical-align: middle;
+	width: 6.9rem;
+	background: #ffd444;
+	font-size: 0.28rem;
+	border: 0;
+	height: 0.88rem;
+}
+.foot{
+	ul{
+		li:first-child{
+			float: left;
+			margin: 0;
+			padding: 0;
+		}
+		li:last-child{
+			float: right;
+			margin: 0;
+			padding: 0;
 		}
 	}
 }
