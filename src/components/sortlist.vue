@@ -1,6 +1,9 @@
 <template>
 	<div class="sortlist">
-		<div class="search"></div>
+		<div class="search">
+			<img src="../assets/searchlogo.png" alt="">
+			<input type="text" placeholder="搜索我的尖叫好物">
+		</div>
 		<div class="tab">
 			<div class="tab-1">
 				<a href="#" title="">
@@ -80,7 +83,6 @@
 import router from '../router'
 import axios from 'axios'
 export default {
-  name: 'home',
 
   data () {
     return {
@@ -99,6 +101,26 @@ export default {
 .sortlist{
 	font-family: 'Microsoft YaHei';
 	padding:15px;
+	.search{
+		background-color: #F5F5F5;
+		border-radius: 0.3rem;
+	    width: 5.4rem;
+	    height: 0.58rem;
+	    line-height: 0.58rem;
+	    margin-bottom: 0.3rem;
+		img{
+			float:left;
+			width:0.4rem;
+			margin:0.1rem;
+		}
+		input{
+			float:left;
+			background-color: #F5F5F5;
+			height: 0.56rem;
+			margin-top:0.01rem;
+			outline:none;
+		}
+	}
 	.tab{
 		a{
 			height:127px;

@@ -28,7 +28,7 @@ const router =  new Router({
         component:sortclass
     },
     {
-    	path:'/detail/:sortclass=id',
+    	path:'/detail/:id',
     	component:sortdetail
     },
     {

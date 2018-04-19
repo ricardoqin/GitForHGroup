@@ -15,11 +15,19 @@ module.exports = {
             target: 'https://m.wowdsgn.com',
             host: 'm.wowdsgn.com',
             changeOrigin:true,
-            // pathRewrite: {
-            //     '^/v4/api': '/v4/api'
-            //   }
+        },
+        '/product': {
+            target: 'https://m.wowdsgn.com',
+            host: 'm.wowdsgn.com',
+            changeOrigin:true,
+        },
+        '/recommend': {
+            target: 'https://m.wowdsgn.com',
+            host: 'm.wowdsgn.com',
+            changeOrigin:true,
         }
     },
+
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
