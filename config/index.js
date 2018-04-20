@@ -14,6 +14,19 @@ module.exports = {
         '/v4': {
             target: 'https://m.maizuo.com',
             host: 'm.maizuo.com',
+        '/pages': {
+            target: 'https://m.wowdsgn.com',
+            host: 'm.wowdsgn.com',
+            changeOrigin:true,
+        },
+        '/product': {
+            target: 'https://m.wowdsgn.com',
+            host: 'm.wowdsgn.com',
+            changeOrigin:true,
+        },
+        '/recommend': {
+            target: 'https://m.wowdsgn.com',
+            host: 'm.wowdsgn.com',
             changeOrigin:true,
             // pathRewrite: {
             //     '^/v4/api': '/v4/api'
@@ -21,6 +34,7 @@ module.exports = {
         },
         '/registerreq':{
             target: 'http://localhost:3000',
+
             host: 'localhost:3000',
 //          http://localhost:3000/register1
             changeOrigin:true,
@@ -44,6 +58,7 @@ module.exports = {
             changeOrigin:true,
        }
     },
+
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

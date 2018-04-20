@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import home from '../components/home'
 import sortlist from '../components/sortlist'
+import sortclass from '../components/sortclass'
 import sortdetail from '../components/sortdetail'
 import cart from '../components/cart'
 import login from '../components/login'
@@ -21,14 +22,18 @@ const router =  new Router({
     },
     {
     	path:'/sortlist',
-    	component:sortlist
+    	component:sortlist,
     },
     {
-    	path:'/detail:id',
+        path:'/sortlist/:id',
+        component:sortclass
+    },
+    {
+    	path:'/detail/:id',
     	component:sortdetail
     },
     {
-    	path:'/cart:id',
+    	path:'/cart/:id',
     	component:cart,
     	meta: { requiresAuth: true }//需验证是否登录
     },
