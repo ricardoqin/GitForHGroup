@@ -26,7 +26,15 @@ module.exports = {
             // pathRewrite: {
             //     '^/v4/api': '/v4/api'
             //   }
-        }
+        },
+        '/recommend': {
+            target: 'https://m.wowdsgn.com',
+            host: 'm.wowdsgn.com',
+            changeOrigin:true,
+            // pathRewrite: {
+            //     '^/v4/api': '/v4/api'
+            //   }
+        },
     },
 
     // Various Dev Server settings
