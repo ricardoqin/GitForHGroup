@@ -6,6 +6,7 @@ import sortdetail from '../components/sortdetail'
 import cart from '../components/cart'
 import login from '../components/login'
 import register from '../components/register'
+import userInfo from '../components/userInfo'
 
 
 
@@ -38,6 +39,10 @@ const router =  new Router({
     {
     	path:'/register',
     	component:register
+    },
+    {
+    	path:'/userInfo',
+    	component:userInfo
     },
     {
     	path:'*',

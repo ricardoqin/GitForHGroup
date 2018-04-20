@@ -61,7 +61,7 @@
 </template>
 
 <script>
-//	import router from "../router/index"
+	import router from "../router/index"
 import axios from'axios';
 export default {
 
@@ -97,16 +97,19 @@ export default {
 //				console.log(err);
 //			})
 	surebtn:function(){
-		console.log("aaa")
+
 		let telNum = this.telNum;
 		let pwdStr = this.pwdStr; 
+		console.log(telNum,pwdStr)
+		
 		axios.post('/loginreq',{
 			telNum,
 			pwdStr
 	  	}).then((res)=>{
 	  		if(res.data == true){
 	  			this.err = false;
-	  			console.log(this.err)
+	  			console.log("登录成功");
+	  			setTimeout(()=>{this.$router.push("/userInfo")},1000)
 	  		}else{
 	  			this.err = true;
 	  			this.errmsg = "手机号或密码错误，请重新输入"

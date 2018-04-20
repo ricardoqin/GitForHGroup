@@ -11,6 +11,8 @@ var usersRouter = require('./routes/users');
 //自定义路由在此
 var registerRouter = require('./routes/registerreq');
 var loginRouter = require('./routes/loginreq');
+var isonline = require('./routes/isonline');
+var userInfo = require('./routes/userInfo');
 //var register1 = require('./register1')
 
 
@@ -30,10 +32,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //配置session使用express-session模块，需安装
-//app.use{session({
-//	name:"HgroupSessID",
-//	secret:""
-//})
+app.use(session({
+	name:"HgroupSessID",//自定义名字,这是在客户端创建的cookie的值
+	secret:"dw3243dw",//加密信息，越长越安全
+	cookie:{maxAge:1000*3600},//保存时间
+	resave:true,
+	saveUninitialized:true
+}));
 	
 
 
@@ -43,6 +48,8 @@ app.use('/users', usersRouter);
 app.use('/register1',usersRouter);
 app.use('/registerreq',registerRouter);
 app.use('/loginreq',loginRouter);
+app.use('/isonline',isonline)
+app.use('/userInfo',userInfo)
 
 
 // catch 404 and forward to error handler

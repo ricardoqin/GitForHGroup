@@ -24,6 +24,7 @@
 s
 <script>
 	import axios from "axios";
+	import router from "../router";
 	var code ;
 export default {
 
@@ -79,7 +80,8 @@ export default {
       	}
       },
       pwdCheck(){
-      	var pwdreg = /^[0-9a-zA-Z_]{6,12}$/;
+      	
+      	var pwdreg = /^[0-9a-zA-Z_]{6,12}$/;2
       	if(pwdreg.test(this.pwdStr)){
       		this.err = false;
       		this.isPwd = true;
@@ -91,20 +93,23 @@ export default {
       },
       registerBtn:function(){
       	if(this.isCheck==true&&this.isTel ==true&&this.isPwd == true){
-      		console.log("全部验证成功")
+//    		console.log("全部验证成功")
       		var telnum = this.telNum;
 	      	var pwdstr = this.pwdStr;
 			axios.post('/registerreq',{
 				telnum,
 				pwdstr
 		  }).then((res)=>{
-		  		if(res.data == false){
+		  	console.log(res.data)
+		  		if(res.data[0] == false){
 	  				this.err = true;
-	  				this.errmsg = "注册成功！"
+	  				this.errmsg = "注册成 功！即将跳转到登录页面";
+	  				setTimeout(()=>{this.$router.push(res.data[1])},1000)
+//	  				this.$router.push(res.data[1])
 		  		}else{
 		  			this.err = true;
 		  			this.errmsg = "该手机号已注册，请直接登录";
-		  			console.log(this);
+//		  			console.log(this);
 		  		}
 		  	}).catch(function(err){
 		  		console.log(err);

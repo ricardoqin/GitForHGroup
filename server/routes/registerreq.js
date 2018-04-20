@@ -9,9 +9,10 @@ router.get('/', function(req, res, next) {
 });
 router.post('/', function(req, res, next) {
    	var isrepet = false;
-   	console.log(req.body)
     usermodel.find({
-    	mobileNumber:req.body.telnum
+    	mobileNumber:req.body.telnum,
+		password:req.body.pwdstr
+    	
     },function(err,data){
     	if(data.length == 0){
 //  		res.send(data)
@@ -21,7 +22,9 @@ router.post('/', function(req, res, next) {
 			},function(err,data){
 				if(!err){
 					isrepet = false;
-					res.send(isrepet)
+//					res.redirect("/login")
+//					res.send(isrepet)
+					res.send([isrepet,"/login"])
 				}
 			})
     	}else{

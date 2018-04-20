@@ -10,15 +10,18 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
 	var isright = false;
 	usermodel.find({
-		mobileNumber:req.body.telnum,
-		password:req.body.pwdstr
+		mobileNumber:req.body.telNum,
+		password:req.body.pwdStr
 	},function(err,data){
 		if(!err){
+			console.log(data);
 			if(data.length == 0){
 				isright = false;
 				res.send(isright);
 			}else{
+				req.session.userlogin = data[0];
 				isright = true;
+				console.log(req.session.userlogin)
 				res.send(isright);
 			}
 		}

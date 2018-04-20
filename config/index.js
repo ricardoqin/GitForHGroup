@@ -21,7 +21,7 @@ module.exports = {
         },
         '/registerreq':{
             target: 'http://localhost:3000',
-//          host: 'localhost:3000',
+            host: 'localhost:3000',
 //          http://localhost:3000/register1
             changeOrigin:true,
 //      		pathRewrite: {
@@ -30,8 +30,19 @@ module.exports = {
        },
        '/loginreq':{
             target: 'http://localhost:3000',
+            host: 'localhost:3000',
             changeOrigin:true,
        },
+       '/isonline':{
+            target: 'http://localhost:3000',
+            host: 'localhost:3000',
+            changeOrigin:true,
+       },
+       '/userInfo':{
+            target: 'http://localhost:3000',
+            host: 'localhost:3000',
+            changeOrigin:true,
+       }
     },
 
     // Various Dev Server settings

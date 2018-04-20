@@ -1,14 +1,16 @@
 var express = require('express');
 var router = express.Router();
-
-/* GET home page. */
 router.get('/', function(req, res, next) {
-//res.render('index', { title: 'Express' });
-	res.send("aaa")
+	var list = [1,2,3,4]
+  res.send(list);
 });
 router.post('/',function(req,res){
 	if(req.session.userlogin){
-		res.send("/userInfo")
+		console.log(req.session.userlogin)
+		res.send("/userInfo");
+	}else{
+		res.send(false)
 	}
 })
+
 module.exports = router;
