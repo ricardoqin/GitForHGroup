@@ -11,7 +11,7 @@ export default {
 document.documentElement.style.fontSize=window.innerWidth/750*100+'px'
 </script>
 
-<style>
+<style >
 body,p,h1,h2,h3,h4,h5,h6,ul,li,dl,dt,dd,input,form{
   margin:0;
   padding:0;
