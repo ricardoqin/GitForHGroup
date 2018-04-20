@@ -7,10 +7,10 @@
 		<div class="bottomarea">
 			<ul>
 				<li>
-					<i class="iconfont icon-favorites"></i>
-					<i class="iconfont icon-cart"><span v-if="buyNum">{{buyNum}}</span></i>
+					<i class="iconfont icon-xihuan"></i>
+					<i class="iconfont icon-gouwuche1" @click="jumpcart"><span v-if="buyNum">{{buyNum}}</span></i>
 				</li>
-				<li @click="addToCart(chooseNum)">加入购物车</li>
+				<li @click="addToCart(chooseNum)">加入购物车</li> 
 				<li>立即购买</li>
 			</ul>
 		</div>
@@ -109,7 +109,7 @@
 		</div>
 		<!-- 大家都在看 -->
 		<div class="peopleSee">
-			<p>- 大家都在看 -</p>
+			<p class="allpeoplesee">- 大家都在看 -</p>
 			<ul>
 				<li v-for="data in peopleSeeList" @click="jumpdetail(data.productId)">
 					<img :src="data.productImg" alt="">
@@ -133,8 +133,6 @@
 import axios from 'axios';
 import router from '../router';
 import backTop from './backTop';
-import detailImgSwiper from './detailImgSwiper';
-import { Swipe, SwipeItem } from 'mint-ui'
 import {mapState} from 'Vuex'
 
 export default {
@@ -152,18 +150,48 @@ export default {
     	productInfomations:[],
     	productSwiperImg:[],
     	peopleSeeList:[],
-    	serviceTime:''
+    	serviceTime:'',
     }
   },
   components:{
   	backTop,
-  	detailImgSwiper,
-  	'mt-swipe':Swipe,
-  	'mt-swipe-item':SwipeItem
   },
   methods:{
   	addToCart(num){
   		this.$store.commit('getBuyNum',num);
+
+  		var obj={
+  			id:this.sortinfomation.sortId,
+  			title:this.sortinfomation.title,
+  			price:this.sortinfomation.price,
+  			imgsrc:this.sortinfomation.bigimg,
+  			spec:this.sortinfomation.spec,
+  			attrname:this.sortinfomation.attrname,
+  			num:this.chooseNum
+  		}
+
+  		if(localStorage.sort){
+  			var arr = JSON.parse(localStorage.sort);
+  			var count=0;
+  			for(var i=0;i<arr.length;i++){
+  				if(arr[i].id == obj.id){
+  					count++
+  					arr[i].num += obj.num
+  				}
+  			}
+  			if(count==0){
+  				arr.push(obj);
+  			}
+  		}else{
+  			var arr=[];
+  			arr.push(obj);
+  		}
+  		
+  		var objtostr = JSON.stringify(arr);
+  		localStorage.setItem('sort',objtostr);
+  	},
+  	jumpcart(){
+  		router.push('/cart')
   	},
   	backhome(){
   		router.push('/home');
@@ -189,7 +217,6 @@ export default {
 		  		}
   			}
   		}
-
   	},
   	clickToChoose2(index,data){
   		this.currentlist2 = index;
@@ -550,10 +577,13 @@ export default {
 		background-color: #fff;
 		p{
 			font-size: 0.32rem;
-			text-align: center;
 			color: #000;
-			padding: 0.4rem 0;
 			margin-top:0.4rem;
+
+		}
+		.allpeoplesee{
+			text-align: center;
+			padding:0.4rem 0;
 		}
 		ul{
 			overflow:hidden;

@@ -32,9 +32,9 @@ const router =  new Router({
     	component:sortdetail
     },
     {
-    	path:'/cart/:id',
+    	path:'/cart',
     	component:cart,
-    	meta: { requiresAuth: true }//需验证是否登录
+    	//meta: { requiresAuth: true }//需验证是否登录
     },
     {
     	path:'/login',
