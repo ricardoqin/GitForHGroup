@@ -19,7 +19,7 @@
 			<div class="product-group-landscape">
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
-						<div v-for="data in homeStrategy" @click="" class="swiper-slide">
+						<div v-for="data in homeStrategy" @click="jumpdetail(data.productId)" class="swiper-slide">
 							<img :src="data.productImg" class="wupin">
 							<p class="title">{{data.productTitle}}</p>
 							<p class="price">¥{{data.originalPrice}}</p>
@@ -48,7 +48,7 @@
 			</div>
 			<div class="product-list">
 				<ul class="clearfix">
-					<li v-for="data in brandRecommendList">
+					<li v-for="data in brandRecommendList" @click="jumpdetail(data.productId)">
 						<img :src="data.productImg">
 						<p>{{data.productTitle}}</p>
 						<span>¥{{data.sellPrice}}</span>
@@ -95,7 +95,7 @@
 			<div class="complex">
 				<div class="brand-details-list content">
 					<ul class="clearfix ul flex-cont flex-centerbox lists">
-						<li v-for="data in handAcceptList">
+						<li v-for="data in handAcceptList" @click="jumpdetail(data.productId)">
 							<img :src="data.productImg">
 							<div>
 								<p>{{data.productName}}</p>
@@ -119,7 +119,7 @@
 			<div class="complex">
 				<div class="brand-details-list content">
 					<ul class="clearfix ul flex-cont flex-centerbox lists">
-						<li v-for="data in matchTableList">
+						<li v-for="data in matchTableList" @click="jumpdetail(data.productId)">
 							<img :src="data.productImg">
 							<div>
 								<p>{{data.productName}}</p>
@@ -144,7 +144,7 @@
 			<div class="complex">
 				<div class="brand-details-list content">
 					<ul class="clearfix ul flex-cont flex-centerbox lists">
-						<li v-for="data in coatHangerList">
+						<li v-for="data in coatHangerList" @click="jumpdetail(data.productId)">
 							<img :src="data.productImg">
 							<div>
 								<p>{{data.productName}}</p>
@@ -184,6 +184,11 @@ export default{
 	components:{
 		"swipe":Swipe,
 		"swipe-item":SwipeItem
+	},
+	methods:{
+		jumpdetail(id){
+			router.push(`/detail/detail=${id}`)
+		}	
 	},
 	mounted(){
 		fetch("/v2/page?pageId=1&tabId=10005&_=1523982316268",{credentials: 'include'}).then(res=>res.json()).then(res=>{

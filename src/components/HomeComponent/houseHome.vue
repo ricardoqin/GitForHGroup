@@ -19,7 +19,7 @@
 			<div class="product-group-landscape">
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
-						<div v-for="data in innovativeDesignList" @click="" class="swiper-slide">
+						<div v-for="data in innovativeDesignList" @click="jumpdetail(data.productId)" class="swiper-slide">
 							<img :src="data.productImg" class="wupin">
 							<p class="title">{{data.productTitle}}</p>
 							<p class="price">¥{{data.originalPrice}}</p>
@@ -48,7 +48,7 @@
 			</div>
 			<div class="product-list">
 				<ul class="clearfix">
-					<li v-for="data in brandRecommendList">
+					<li v-for="data in brandRecommendList" @click="jumpdetail(data.productId)">
 						<img :src="data.productImg">
 						<p >{{data.productTitle}}</p>
 						<span>¥{{data.sellPrice}}</span>
@@ -64,7 +64,7 @@
 				<h1>热门分类</h1>
 			</div>
 			<div class="banner-group banner-group-fixed-landscape">
-				<div class="banner" v-for="data in hostClassifyList">
+				<div class="banner" v-for="data in hostClassifyList" @click="jumpdetail(data.productId)">
 					<img :src="data.bannerImgSrc" style="width: 70px;height: 88px;"/>
 				</div>
 			</div>
@@ -80,7 +80,7 @@
 			<div class="complex">
 				<div class="brand-details-list content">
 					<ul class="clearfix ul flex-cont flex-centerbox lists">
-						<li v-for="data in auraTablewareList">
+						<li v-for="data in auraTablewareList" @click="jumpdetail(data.productId)">
 							<img :src="data.productImg">
 							<div>
 								<p>{{data.productName}}</p>
@@ -104,7 +104,7 @@
 			<div class="complex">
 				<div class="brand-details-list content">
 					<ul class="clearfix ul flex-cont flex-centerbox lists">
-						<li v-for="data in simplenessList">
+						<li v-for="data in simplenessList" @click="jumpdetail(data.productId)">
 							<img :src="data.productImg">
 							<div>
 								<p>{{data.productName}}</p>
@@ -129,7 +129,7 @@
 			<div class="complex">
 				<div class="brand-details-list content">
 					<ul class="clearfix ul flex-cont flex-centerbox lists">
-						<li v-for="data in modellingUmbrellaList">
+						<li v-for="data in modellingUmbrellaList" @click="jumpdetail(data.productId)">
 							<img :src="data.productImg">
 							<div>
 								<p>{{data.productName}}</p>
@@ -169,6 +169,11 @@ export default{
 	components:{
 		"swipe":Swipe,
 		"swipe-item":SwipeItem
+	},
+	methods:{
+		jumpdetail(id){
+			router.push(`/detail/detail=${id}`);
+		}
 	},
 	mounted(){
 		fetch("/v2/page?pageId=1&tabId=10006&_=1523983490072",{credentials: 'include'}).then(res=>res.json()).then(res=>{

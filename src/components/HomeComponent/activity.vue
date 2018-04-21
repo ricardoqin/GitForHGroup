@@ -55,7 +55,7 @@
 			<div class="complex">
 				<div class="brand-details-list content">
 					<ul class="clearfix ul flex-cont flex-centerbox lists">
-						<li v-for="data in hostProductList">
+						<li v-for="data in hostProductList" @click="jumpdetail(data.productId)">
 							<img :src="data.productImg">
 							<div>
 								<p>{{data.productName}}</p>
@@ -94,6 +94,11 @@ export default{
 	components:{
 		"swipe":Swipe,
 		"swipe-item":SwipeItem
+	},
+	methods:{
+		jumpdetail(id){
+			router.push(`/detail/detail=${id}`)
+		}
 	},
 	mounted(){
 			//https://img.wowdsgn.com/page/banners/0f9ee6a6-d1a4-47d2-9e0f-71ae3564aeaf_2dimension_1200x201.jpg 限时抢购

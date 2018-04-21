@@ -24,7 +24,7 @@
 			<!--<div class="product-group-landscape">-->
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
-						<div v-for="data in hostDetailList" class="swiper-slide">
+						<div v-for="data in hostDetailList" class="swiper-slide" @click="jumpdetail(data.productId)">
 							<img :src="data.productImg" class="wupin">
 							<p class="title">{{data.productTitle}}</p>
 							<p class="price">¥{{data.originalPrice}}</p>
@@ -51,7 +51,7 @@
 	        </div>
 	        <div class="product-list">
 	        		<ul class="clearfix">
-	        			<li v-for="data in goodWupinList">
+	        			<li v-for="data in goodWupinList" @click="jumpdetail(data.productId)">
 	        				<img :src="data.productImg">
 	        				<p>{{data.productTitle}}</p>
 	        				<span>¥{{data.sellPrice}}</span>
@@ -74,7 +74,7 @@
 			</div>
 			<div class="product-list">
 				<ul class="clearfix">
-					<li v-for="data in jiajuList">
+					<li v-for="data in jiajuList" @click="jumpdetail(data.productId)">
 						<img :src="data.productImg">
 						<p>{{data.productTitle}}</p>
 						<span>¥{{data.sellPrice}}</span>
@@ -98,7 +98,7 @@
 			</div>
 			<div class="product-list">
 				<ul class="clearfix">
-					<li v-for="data in sceneMathList">
+					<li v-for="data in sceneMathList" @click="jumpdetail(data.productId)">
 						<img :src="data.productImg">
 						<p>{{data.productTitle}}</p>
 						<span>¥{{data.sellPrice}}</span>
@@ -121,7 +121,7 @@
 			</div>
 			<div class="product-list">
 				<ul class="clearfix">
-					<li v-for="data in brandRecommendList">
+					<li v-for="data in brandRecommendList" @click="jumpdetail(data.productId)">
 						<img :src="data.productImg">
 						<p>{{data.productTitle}}</p>
 						<span>¥{{data.sellPrice}}</span>
@@ -147,7 +147,7 @@
 			<div class="product-group-landscape">
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
-						<div v-for="data in newFirstList"  class="swiper-slide">
+						<div v-for="data in newFirstList"  class="swiper-slide" @click="jumpdetail(data.productId)">
 							<img :src="data.productImg" class="wupin">
 							<p class="title">{{data.productTitle}}</p>
 							<p class="price">¥{{data.originalPrice}}</p>
@@ -174,7 +174,7 @@
 			</div>
 			<div class="product-list">
 				<ul class="clearfix">
-					<li v-for="data in choicenessList">
+					<li v-for="data in choicenessList" @click="jumpdetail(data.productId)">
 						<img :src="data.productImg">
 						<p>{{data.productTitle}}</p>
 						<span>¥{{data.sellPrice}}</span>
@@ -197,7 +197,7 @@
 			</div>
 			<div class="product-list">
 				<ul class="clearfix">
-					<li v-for="data in jiajuTimeList">
+					<li v-for="data in jiajuTimeList" @click="jumpdetail(data.productId)">
 						<img :src="data.productImg">
 						<p>{{data.productTitle}}</p>
 						<span>¥{{data.sellPrice}}</span>
@@ -220,7 +220,7 @@
 			</div>
 			<div class="product-list">
 				<ul class="clearfix">
-					<li v-for="data in sceneMathList1">
+					<li v-for="data in sceneMathList1" @click="jumpdetail(data.productId)">
 						<img :src="data.productImg">
 						<p>{{data.productTitle}}</p>
 						<span>¥{{data.sellPrice}}</span>
@@ -243,7 +243,7 @@
 			</div>
 			<div class="product-list">
 				<ul class="clearfix">
-					<li v-for="data in brandRecommendList1">
+					<li v-for="data in brandRecommendList1" @click="jumpdetail(data.productId)">
 						<img :src="data.productImg">
 						<p>{{data.productTitle}}</p>
 						<span>¥{{data.sellPrice}}</span>
@@ -275,7 +275,7 @@
 			</div>
 			<div class="product-list">
 				<ul class="clearfix">
-					<li v-for="data in choicenessList1">
+					<li v-for="data in choicenessList1" @click="jumpdetail(data.productId)">
 						<img :src="data.productImg">
 						<p>{{data.productTitle}}</p>
 						<span>¥{{data.sellPrice}}</span>
@@ -298,7 +298,7 @@
 			</div>
 			<div class="product-list">
 				<ul class="clearfix">
-					<li v-for="data in jiajuTimeList1">
+					<li v-for="data in jiajuTimeList1" @click="jumpdetail(data.productId)">
 						<img :src="data.productImg">
 						<p>{{data.productTitle}}</p>
 						<span>¥{{data.sellPrice}}</span>
@@ -321,7 +321,7 @@
 			</div>
 			<div class="product-list">
 				<ul class="clearfix">
-					<li v-for="data in sceneMathList2">
+					<li v-for="data in sceneMathList2" @click="jumpdetail(data.productId)">
 						<img :src="data.productImg">
 						<p>{{data.productTitle}}</p>
 						<span>¥{{data.sellPrice}}</span>
@@ -344,7 +344,7 @@
 			</div>
 			<div class="product-list">
 				<ul class="clearfix">
-					<li v-for="data in brandRecommendList2">
+					<li v-for="data in brandRecommendList2" @click="jumpdetail(data.productId)">
 						<img :src="data.productImg">
 						<p>{{data.productTitle}}</p>
 						<span>¥{{data.sellPrice}}</span>
@@ -376,7 +376,7 @@
 			</div>
 			<div class="product-list">
 				<ul class="clearfix">
-					<li v-for="data in giftChoicenessList">
+					<li v-for="data in giftChoicenessList" @click="jumpdetail(data.productId)">
 						<img :src="data.productImg">
 						<p>{{data.productTitle}}</p>
 						<span>¥{{data.sellPrice}}</span>
@@ -399,7 +399,7 @@
 			</div>
 			<div class="product-list">
 				<ul class="clearfix">
-					<li v-for="data in acceptChoicenessList">
+					<li v-for="data in acceptChoicenessList" @click="jumpdetail(data.productId)">
 						<img :src="data.productImg">
 						<p>{{data.productTitle}}</p>
 						<span>¥{{data.sellPrice}}</span>
@@ -422,7 +422,7 @@
 			</div>
 			<div class="product-list">
 				<ul class="clearfix">
-					<li v-for="data in textilesChoicenessList">
+					<li v-for="data in textilesChoicenessList" @click="jumpdetail(data.productId)">
 						<img :src="data.productImg">
 						<p>{{data.productTitle}}</p>
 						<span>¥{{data.sellPrice}}</span>
@@ -445,7 +445,7 @@
 			</div>
 			<div class="product-list">
 				<ul class="clearfix">
-					<li v-for="data in decorationChoicenessList">
+					<li v-for="data in decorationChoicenessList" @click="jumpdetail(data.productId)">
 						<img :src="data.productImg">
 						<p>{{data.productTitle}}</p>
 						<span>¥{{data.sellPrice}}</span>
@@ -496,6 +496,11 @@ export default{
 		"swipe":Swipe,
 		"swipe-item":SwipeItem
 	},
+	methods:{
+		jumpdetail(id){
+			router.push(`/detail/detail=${id}`)
+		}
+	},
 	mounted(){
 		fetch("/v2/page?pageId=1&tabId=1&_=1523950016984",{credentials: 'include'}).then(res=>res.json()).then(res=>{
 //				console.log(res.data.modules[0].moduleContent.banners);//轮播请求的数据
@@ -530,17 +535,8 @@ export default{
 					},10)
 				})
 			})
-//		axios.get('/v2/page?pageId=1&tabId=1&_=1523950016984').then(res=>{
-//			console.log(res)
-//		})
-			
-	},
-//	Updated(){
-//		var swiper = new Swiper('.swiper-container',{
-//			slidesPerView:4
-//		})
-//	}
-}
+		},
+	}
 
 </script>
 
