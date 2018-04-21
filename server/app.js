@@ -49,7 +49,7 @@ app.use('/register1',usersRouter);
 app.use('/registerreq',registerRouter);
 app.use('/loginreq',loginRouter);
 app.use('/isonline',isonline)
-app.use('/userInfo',userInfo)
+app.use('/userInfoBK',userInfo)
 
 
 // catch 404 and forward to error handler

@@ -6,7 +6,7 @@
 		<div class="userbox">
 			<img src="../assets/default_portrait.png"/>
 			<div class="usernamebox">
-				<p>hs</p>
+				<p>{{fullname}}</p>
 			</div>
 			<i class="iconfont icon-more"></i>
 		</div>
@@ -77,9 +77,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="exit">
-			<button>注销</button>
-		</div>
+		<button class="exit" @click="DestroyCookie">注销</button>
 		
 	</div>
 </template>
@@ -93,14 +91,31 @@ export default {
 
   data () {
     return {
-
+		fullname:""
     }
   },
-  beforeMount(){
-  	axios.post("/userInfo").then((res)=>{
-  		
+  methods:{
+  	DestroyCookie(){
+		axios.post("/isonline",{
+			isDestroy:true
+		}).then((res)=>{
+		alert("注销成功，即将跳转回首页")
+		setTimeout(()=>{router.push(res.data)},1000)
+	  	}).catch((err)=>{
+	  		console.log(err)
+	  	})
+  	}
+  },
+  beforeCreate(){
+  	axios.post("/userInfoBK").then((res)=>{
+  		if(res.data[0]){
+  			this.fullname = res.data[1];
+  			router.push(res.data[0]);
+  		}else{
+  			router.push(res.data)
+  		}
   	}).catch((err)=>{
-  		
+  		console.log(err)
   	})
   }
 
@@ -219,7 +234,7 @@ header{
 
 .otherbox{
 	/*margin-bottom: 0.89rem;*/
-	margin-bottom: 0.5rem;
+	border-bottom: 0.5rem solid #EAEAEA;
 	ul{
 		li{
 			width: 100%;
@@ -256,17 +271,14 @@ header{
 }
 
 .exit{
-	button{
-		float: left;
-		outline: none;
-		width: 100%;
-		height: 1rem;
-		line-height: 1rem;
-		color: #ff7070;
-		text-align: center;
-		background: #FFFFFF;
-		border: 0;
-		margin-bottom: 1rem;
-	}
+	float: left;
+	width: 100%;
+	height: 1rem;
+	line-height: 1rem;
+	color: #ff7070;
+	text-align: center;
+	background: #FFFFFF;
+	border: 0;
+	margin-bottom: 1rem;
 }
 </style>
