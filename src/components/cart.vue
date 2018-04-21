@@ -29,6 +29,8 @@
 						</li>
 						<li></li>
 						<li class="money">￥ {{data.price}}<span>x{{data.num}}</span></li>
+						</ul>
+						</div>
 			</div>
 		</div>
 		<div class="recommend">

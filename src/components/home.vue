@@ -1,5 +1,4 @@
 <template>
-	<div>
 	<div class="home">
 	<!--头部信息 logo 搜索框=============================-->
 		<header class="header noborder">
