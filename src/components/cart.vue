@@ -3,7 +3,7 @@
 		<div class="header">
 			<img src="../assets/homelogo.png" alt="" @click="backhome">
 			购物车
-			<span alt="" @click = "edit">编辑</span>
+			<span alt="" @click = "edit">{{editName}}</span>
 		</div>
 
 		<div class="nosorts" v-if="!havesort">
@@ -11,13 +11,13 @@
 		</div>
 
 		<div class="allsorts" v-if="havesort">
-			<div class="orders" v-for="data in sorts" >
+			<div class="orders" v-for="data,index in sorts" >
 				<div class="select">
-					<i class="iconfont icon-gou"></i>
+					<i :class="judgeArr[index].isChoosed?'iconfont icon-gou':'iconfont icon-gouxuan'" @click="choose(index)"></i>
 					<div class="count">
-						<span class="reduce">-</span>
+						<span class="reduce" @click="reduce(index)">-</span>
 						<p>{{data.num}}</p>
-						<span class="add" >+</span>
+						<span class="add" @click="add(index)">+</span>
 					</div>
 				</div>
 				<div class="sort">
@@ -29,7 +29,7 @@
 							<span v-if="data.attrname">{{data.attrname}}</span>
 						</li>
 						<li></li>
-						<li class="money">￥ {{data.price}}</li>
+						<li class="money">￥ {{data.price}}<span>x{{data.num}}</span></li>
 					</ul>
 				</div>
 			</div>
@@ -55,17 +55,17 @@
 		</div>
 		<div class="footer">
 			<ul>
-				<li>
-					<i class="iconfont icon-gou"></i>
+				<li @click="isChooseAll">
+					<i :class="chooseAll?'iconfont icon-gou':'iconfont icon-gouxuan'"></i>
 					<span>全选</span>
 				</li>
-				<li>合计：</li>
-				<li>去结算</li>
+				<li v-if="!isEdit" class="totalMoney">合计：{{getTotalMoney}}</li>
+				<li v-if="!isEdit" class="doCount">去结算</li>
+				<li v-if="isEdit" class="delButton" @click="delSort">删除</li>
 			</ul>
 		</div>
 		<backTop></backTop>
 		
-<!-- 		<i class="iconfont icon-gouxuan"></i> -->
 	</div>
 </template>
 
@@ -81,24 +81,111 @@ import backTop from './backTop';
 export default {
   data () {
     return {
+    	currentChoose:0,
+    	judgeArr:[],
+    	chooseAll:true,
     	havesort:false,
     	sorts:[],
+    	totalMoney:0,
+    	editName:'编辑',
+    	isEdit:false,
     	page:1,
     	recommendList:[],
-    	msg:'玩命加载中'
+    	msg:'玩命加载中',
+
     }
   },
   components:{
   	backTop
   },
+  computed:{
+  	//计算总金额
+  	getTotalMoney(){
+  		this.totalMoney = 0;
+  		for(var i in this.sorts){
+  			if(this.judgeArr[i].isChoosed){
+  				this.totalMoney += this.sorts[i].price * this.sorts[i].num;
+  			}
+  		}
+  		return this.totalMoney;
+  	}
+  },
   methods:{
+
+  	//回到首页
   	backhome(){
   		router.push('/home');
   	},
+  	//点击编辑商品
   	edit(){
+  		this.isEdit = !this.isEdit;
+  		if(this.isEdit){
+  			this.editName = '完成';
+  			for(var i in this.judgeArr){
+  				this.judgeArr[i].isChoosed = false
+  			}
+  			this.chooseAll = false;
+  		}else{
+  			this.editName = '编辑';
+  			for(var i in this.judgeArr){
+  				this.judgeArr[i].isChoosed = true
+  			}
+  			this.chooseAll = true;
+  		}
   	},
+  	//点击删除选中商品
+  	delSort(){
+  		for(var i=0;i<this.judgeArr.length;i++){
+  			if(this.judgeArr[i].isChoosed){
+  				this.sorts.splice(i,1);
+  				i--;
+  				localStorage.setItem('sort',JSON.stringify(this.sorts));
+  			}
+  			
+  		}
+/*  		if(this.chooseAll){
+  			this.sorts=[];
+  			localStorage.romoveItem('sort')
+  		}*/
+  		this.judgeArr[i].isChoosed = false
+
+
+  	},
+  	//点击减少商品数量
+  	reduce(index){
+  		if(this.sorts[index].num>1){
+  			this.sorts[index].num--;
+  			localStorage.setItem('sort',JSON.stringify(this.sorts));
+  		}
+  	},
+  	//点击增加商品数量
+  	add(index){
+		this.sorts[index].num++;
+		localStorage.setItem('sort',JSON.stringify(this.sorts));
+  	},
+  	//跳转详情页
   	jumpdetail(id){
   		router.push(`/detail/detail=${id}`);
+  	},
+  	//点击单个勾选
+  	choose(index){
+  		this.judgeArr[index].isChoosed = !this.judgeArr[index].isChoosed;
+  		var i = this.judgeArr.every(function(item,index){
+  			return item.isChoosed == true;
+  		})
+  		if(i){
+  			this.chooseAll = true;
+  		}else{
+  			this.chooseAll = false;
+  		}
+
+  	},
+  	//点击全选
+  	isChooseAll(){
+  		this.chooseAll = !this.chooseAll 
+  		for(var i in this.judgeArr){
+  			this.judgeArr[i].isChoosed = this.chooseAll;
+  		}
   	},
   	//下拉加载更多
   	loadMore() {
@@ -115,10 +202,17 @@ export default {
 	}
   },
   mounted(){
+
+  	//通过localStorage加载购物车商品
   	if(localStorage.sort){
-  		this.sorts = JSON.parse(localStorage.sort);
   		this.havesort = true;
+  		this.sorts = JSON.parse(localStorage.sort);
+  		for(var i=0;i<this.sorts.length;i++){
+  			this.judgeArr.push({num:i,isChoosed:true})
+  		}
   	}
+
+  	//加载推荐商品
 	axios.get(`recommend/cart?currentPage=${this.page}&_=1524225079781`).then(res=>{
 		this.recommendList = res.data.data;
   	})
@@ -218,6 +312,14 @@ export default {
 						padding: 0.04rem 0.1rem;
 					}
 				}
+				.money{
+					span{
+						float:right;
+						font-size:0.2rem;
+						margin-right:0.3rem;
+						color: #808080
+					}
+				}
 			}
 		}
 	}
@@ -302,30 +404,36 @@ export default {
 		background-color: #fff;
 		font-size:0.28rem;
 		border-top: 1px solid #f5f5f5;
-		display:table;
-		vertical-align: middle;
 		li{
-			display: table-cell;
-		    vertical-align: middle;
+			float:left;
+		    line-height: 1.04rem;
 		    height:1.04rem;
 			i{
 				font-size:0.4rem;
 			}
 			&:first-of-type{
-				width: 1.44rem;
 			    padding-left: 0.3rem;
 			}
-			&:nth-of-type(2){
-				width: 4.36rem;
+		}
+		.totalMoney{
+				width: 3.8rem;
 				padding-right: 0.3rem;
 				text-align: right;
-			}
-			&:last-of-type{
-			    font-size: 0.3rem;
-			    width: 1.95rem;
-			    text-align: center;
-			    background-color: #FFD444;
-			}
+		}
+		.doCount{
+		    font-size: 0.3rem;
+		    float:right;
+		    width: 1.95rem;
+		    text-align: center;
+		    background-color: #FFD444;
+		}
+		.delButton{
+			float:right;
+			width: 1.95rem;
+		    font-size: 0.3rem;
+		    background-color: #000;
+		    text-align: center;
+		    color: #fff;
 		}
 	}
 	

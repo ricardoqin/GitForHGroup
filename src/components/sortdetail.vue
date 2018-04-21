@@ -8,7 +8,7 @@
 			<ul>
 				<li>
 					<i class="iconfont icon-xihuan"></i>
-					<i class="iconfont icon-gouwuche1" @click="jumpcart"><span v-if="buyNum">{{buyNum}}</span></i>
+					<i class="iconfont icon-gouwuche1" @click="jumpcart"><span v-if="buyNum">{{getBuyNum}}</span></i>
 				</li>
 				<li @click="addToCart(chooseNum)">加入购物车</li> 
 				<li>立即购买</li>
@@ -151,6 +151,7 @@ export default {
     	productSwiperImg:[],
     	peopleSeeList:[],
     	serviceTime:'',
+    	buyNum:0
     }
   },
   components:{
@@ -289,7 +290,16 @@ export default {
   	  }) 
   },
   computed:{
-  	...mapState(['buyNum'])
+  	getBuyNum(){
+  		this.buyNum=0;
+  		if(localStorage.sort){
+  			var arr = JSON.parse(localStorage.sort);
+  			for(var i=0;i<arr.length;i++){
+  				this.buyNum += arr[i].num;
+  			}
+  		}
+  		return this.buyNum
+  	}
   }
 }
 </script>

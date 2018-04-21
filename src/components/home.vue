@@ -15,14 +15,9 @@ export default {
     }
   },
   mounted(){
-	  	axios.get("/v4/api/billboard/home?__t=1523895165695").then(res=>{
-				console.log(res.data);
 
-			}).catch(err=>{
-				console.log(err);
-			})
-	    }
 	}
+}
 </script>
 
 <style lang="scss" scoped>

@@ -116,7 +116,6 @@ export default {
 			return;
 		}
 		axios.get(`/pages/category/${this.currentclassid}?pageNumber=${this.pagenum}&orderBy=${this.chooserank}&sort=desc&_=1523941943444`).then(res=>{
-			console.log(1)
 			this.sortlist = [...this.sortlist,...res.data.data.products];
 			this.loading = false;	
 	  	})
