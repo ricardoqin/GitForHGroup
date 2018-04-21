@@ -1,10 +1,35 @@
 <template>
-	
+	<div>
+		<header>
+			<h3>注册</h3>
+			<router-link to="login" tag="a" class="header-right">登录</router-link>
+		</header>
+		<div class="formebox">
+			<!--<form action="#" method="post">-->
+			<ul>
+				<li><input @change="telCheck" v-model="telNum" name="mobilenum" type="text" value="" placeholder="请输入手机号"/></li>
+				<li><input @change="pwdCheck" v-model="pwdStr" name="pwdstr" type="password" value="" placeholder="请输入密码"/></li>
+				<li><input @change="changeCheck" v-model="picStr" type="text" name="picStr" id="inputCode" placeholder="请输入图形验证码"/><input type="button" id="code" @click="createCode"  class="verification1" v-model="checkCode"/><a href="#">换一张</a></li>
+			</ul>
+			<div class="errmsg">
+				<span v-show="err">{{errmsg}}</span>
+			</div>
+			
+			<button type="submit" @click="registerBtn">注册</button>
+			<!--</form>-->
+			
+		</div>
+	</div>
 </template>
-
+s
 <script>
-
+	import axios from "axios";
+	import router from "../router";
+	var code ;
 export default {
+
+  name: 'home',
+
   data () {
     return {
 		checkCode:'',
@@ -68,6 +93,7 @@ export default {
       },
       registerBtn:function(){
       	if(this.isCheck==true&&this.isTel ==true&&this.isPwd == true){
+//    		console.log("全部验证成功")
       		var telnum = this.telNum;
 	      	var pwdstr = this.pwdStr;
 			axios.post('/registerreq',{
@@ -98,11 +124,24 @@ export default {
    created(){
         this.createCode();
     }
-  }
 }
 </script>
 
 <style lang="scss" scoped>
+*{
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+}
+ul{
+	list-style: none;
+}
+input{
+	border: 0;
+}
+
 header{
 	background: #FFFFFF;
 	height: 0.88rem;
