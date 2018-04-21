@@ -40,8 +40,8 @@ module.exports = {
             target: 'http://localhost:3000',
             host: 'localhost:3000',
             changeOrigin:true,
-        },
-        '/userInfo':{
+       },
+       '/userInfoBK':{
             target: 'http://localhost:3000',
             host: 'localhost:3000',
             changeOrigin:true,

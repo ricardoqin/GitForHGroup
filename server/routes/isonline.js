@@ -5,12 +5,16 @@ router.get('/', function(req, res, next) {
   res.send(list);
 });
 router.post('/',function(req,res){
-	if(req.session.userlogin){
+	if(req.body.isDestroy){
+		req.session.destroy();
+		res.send("/home");
+	}else if(req.session.userlogin){
 		console.log(req.session.userlogin)
 		res.send("/userInfo");
 	}else{
-		res.send(false)
+		res.send("/login")
 	}
+	
 })
 
 module.exports = router;

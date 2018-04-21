@@ -5,7 +5,11 @@ router.get('/', function(req, res, next) {
   res.send(list);
 });
 router.post('/',function(req,res){
-	console.log(req)
+	if(req.session.userlogin){
+		res.send(["/userInfo",req.session.userlogin.mobileNumber]);
+	}else{
+		res.send("/login")
+	}
 })
 
 module.exports = router;
