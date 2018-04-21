@@ -3,7 +3,6 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-//res.render('index', { title: 'Express' });
 	res.send("aaa")
 });
 router.post('/',function(req,res){
@@ -11,4 +10,5 @@ router.post('/',function(req,res){
 		res.send("/userInfo")
 	}
 })
+
 module.exports = router;

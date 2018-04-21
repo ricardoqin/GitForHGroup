@@ -111,15 +111,13 @@ export default {
   	loadMore() {
   		this.loading = true;
   		this.pagenum++;
+  		if(this.pagenum>2){
+			this.msg = '没有更多了';
+			return;
+		}
 		axios.get(`/pages/category/${this.currentclassid}?pageNumber=${this.pagenum}&orderBy=${this.chooserank}&sort=desc&_=1523941943444`).then(res=>{
-			if(this.pagenum>2){
-				this.loading = true;
-				this.msg = '没有更多了';
-				return;
-			}
 			this.sortlist = [...this.sortlist,...res.data.data.products];
-			this.loading = false;
-			
+			this.loading = false;	
 	  	})
 	},
 	jumpdetail(id){

@@ -28,35 +28,35 @@ module.exports = {
             target: 'https://m.wowdsgn.com',
             host: 'm.wowdsgn.com',
             changeOrigin:true,
-            // pathRewrite: {
-            //     '^/v4/api': '/v4/api'
-            //   }
         },
         '/registerreq':{
             target: 'http://localhost:3000',
-
             host: 'localhost:3000',
-//          http://localhost:3000/register1
             changeOrigin:true,
-//      		pathRewrite: {
-//		           '^/register': ''
-//		         }
-       },
-       '/loginreq':{
+        },
+        '/loginreq':{
             target: 'http://localhost:3000',
             host: 'localhost:3000',
             changeOrigin:true,
-       },
-       '/isonline':{
+        },
+        '/isonline':{
             target: 'http://localhost:3000',
             host: 'localhost:3000',
             changeOrigin:true,
-       },
-       '/userInfo':{
+        },
+        '/userInfo':{
             target: 'http://localhost:3000',
             host: 'localhost:3000',
             changeOrigin:true,
-       }
+        },
+        '/registerreq':{
+            target: 'http://localhost:3000',
+            changeOrigin:true,
+        },
+        '/loginreq':{
+            target: 'http://localhost:3000',
+            changeOrigin:true,
+        },
     },
 
 

@@ -13,7 +13,6 @@ var registerRouter = require('./routes/registerreq');
 var loginRouter = require('./routes/loginreq');
 var isonline = require('./routes/isonline');
 var userInfo = require('./routes/userInfo');
-//var register1 = require('./register1')
 
 
 //---------连接数据库---前提先引入

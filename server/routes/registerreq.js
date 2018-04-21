@@ -12,18 +12,14 @@ router.post('/', function(req, res, next) {
     usermodel.find({
     	mobileNumber:req.body.telnum,
 		password:req.body.pwdstr
-    	
     },function(err,data){
     	if(data.length == 0){
-//  		res.send(data)
 			usermodel.create({
 				mobileNumber:req.body.telnum,
 				password:req.body.pwdstr
 			},function(err,data){
 				if(!err){
 					isrepet = false;
-//					res.redirect("/login")
-//					res.send(isrepet)
 					res.send([isrepet,"/login"])
 				}
 			})
@@ -32,8 +28,6 @@ router.post('/', function(req, res, next) {
     		res.send(isrepet)
     	}
     })
-	
-//	res.send(req.body.telnum);
 });
 
 module.exports = router;

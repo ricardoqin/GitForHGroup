@@ -97,7 +97,6 @@ export default {
 //				console.log(err);
 //			})
 	surebtn:function(){
-
 		let telNum = this.telNum;
 		let pwdStr = this.pwdStr; 
 		console.log(telNum,pwdStr)
@@ -128,19 +127,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-body,div,a,img,h3,header,ul,li,input{
-	margin: 0;
-	padding: 0;
-}
-li{
-	list-style: none;
-}
 body{
 	font-size: 0.32rem;
 	background-color: #f5f5f5;
-}
-img{
-	border: 0;
 }
 a{
 	color: #2c3030;

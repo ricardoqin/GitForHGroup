@@ -27,9 +27,6 @@ s
 	import router from "../router";
 	var code ;
 export default {
-
-  name: 'home',
-
   data () {
     return {
 		checkCode:'',
@@ -93,7 +90,6 @@ export default {
       },
       registerBtn:function(){
       	if(this.isCheck==true&&this.isTel ==true&&this.isPwd == true){
-//    		console.log("全部验证成功")
       		var telnum = this.telNum;
 	      	var pwdstr = this.pwdStr;
 			axios.post('/registerreq',{
@@ -128,20 +124,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-*{
-	margin: 0;
-	padding: 0;
-}
-a{
-	text-decoration: none;
-}
-ul{
-	list-style: none;
-}
-input{
-	border: 0;
-}
-
 header{
 	background: #FFFFFF;
 	height: 0.88rem;
