@@ -57,7 +57,7 @@
 			
 		</div>
 	</div>	
-
+</div>
 </template>
 
 <script>
@@ -69,6 +69,7 @@ export default {
 
   data () {
     return {
+
 		ischoice:true,
 		loginway:["密码登录","短信登录"],
 		currentIndex:0,

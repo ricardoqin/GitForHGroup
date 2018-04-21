@@ -14,8 +14,7 @@
 </template>
 
 <script>
-	import router from "./router/index"
-import axios from 'axios';
+import router from './router';
 export default {
   name: 'App',
 	  data(){
@@ -47,18 +46,17 @@ export default {
   		}
   	}
 }
-document.documentElement.style.fontSize=window.innerWidth/750*100+'px'
 </script>
 <style lang="scss" >
 	
 body,p,h1,h2,h3,h4,h5,h6,ul,li,dl,dt,dd,input,form{
   margin:0;
   padding:0;
-
 }
 body,html{
   width:100%;
   height:100%;
+}
 html{
 	font-size: 50px;
 }
@@ -80,8 +78,8 @@ li{
 input{
   border:none;
 }
-  .bottomBar{
-  width: 7.5rem;
+.bottomBar{
+    width: 7.5rem;
     height: 0.88rem;
     position: fixed;
     margin: 0 auto;
@@ -113,6 +111,4 @@ input{
     }
   }
 }
-
-
 </style>

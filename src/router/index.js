@@ -2,12 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import home from '../components/home'
 import sortlist from '../components/sortlist'
-import sortclass from '../components/sortclass'
 import sortdetail from '../components/sortdetail'
 import cart from '../components/cart'
 import login from '../components/login'
 import register from '../components/register'
-import userInfo from '../components/userInfo'
 
 
 
@@ -22,14 +20,10 @@ const router =  new Router({
     },
     {
     	path:'/sortlist',
-    	component:sortlist,
+    	component:sortlist
     },
     {
-        path:'/sortlist/:id',
-        component:sortclass
-    },
-    {
-    	path:'/detail/:id',
+    	path:'/detail:id',
     	component:sortdetail
     },
     {
@@ -46,10 +40,6 @@ const router =  new Router({
     	component:register
     },
     {
-    	path:'/userInfo',
-    	component:userInfo
-    },
-    {
     	path:'*',
     	redirect:"/home"
     }
@@ -57,7 +47,6 @@ const router =  new Router({
 })
 
 router.beforeEach((to, from, next) => {
-	// console.log("123");
   if (to.matched.some(record => record.meta.requiresAuth)) {
   //   // this route requires auth, check if logged in
   //   // if not, redirect to login page.

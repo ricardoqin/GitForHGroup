@@ -1,6 +1,6 @@
 <template>
 	<div class="backTop" v-if="showBackTop" @click="backTop(backTopSpeed)">
-		<img src="../assets/backTop.png" alt="">
+		<img src="../assets/HomeImg/backTop.png" alt="">
 	</div>
 </template>
 

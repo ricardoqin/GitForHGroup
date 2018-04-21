@@ -15,12 +15,13 @@ if(localStorage.sort){
 }
 const store = new Vuex.Store({
 	state:{
-		buyNum:num
+		buyNum:0
 	},
 	actions:{
 
 	},
 	mutations:{
+
 		getBuyNum:function(state,payload){
 			state.buyNum += payload;
 		}

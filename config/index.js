@@ -14,12 +14,9 @@ module.exports = {
         '/v4': {
             target: 'https://m.maizuo.com',
             host: 'm.maizuo.com',
-        '/pages': {
-            target: 'https://m.wowdsgn.com',
-            host: 'm.wowdsgn.com',
             changeOrigin:true,
         },
-        '/product': {
+        '/v2': {
             target: 'https://m.wowdsgn.com',
             host: 'm.wowdsgn.com',
             changeOrigin:true,
@@ -56,9 +53,8 @@ module.exports = {
         '/loginreq':{
             target: 'http://localhost:3000',
             changeOrigin:true,
-        },
+        }
     },
-
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

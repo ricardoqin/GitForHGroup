@@ -5,7 +5,6 @@
 			购物车
 			<span alt="" @click = "edit">{{editName}}</span>
 		</div>
-
 		<div class="nosorts" v-if="!havesort">
 			没有商品
 		</div>
@@ -30,8 +29,6 @@
 						</li>
 						<li></li>
 						<li class="money">￥ {{data.price}}<span>x{{data.num}}</span></li>
-					</ul>
-				</div>
 			</div>
 		</div>
 		<div class="recommend">
@@ -65,12 +62,10 @@
 			</ul>
 		</div>
 		<backTop></backTop>
-		
 	</div>
 </template>
 
 <script>
-
 import axios from 'axios'
 import { InfiniteScroll } from 'mint-ui';
 import Vue from 'vue';
@@ -370,19 +365,6 @@ export default {
 				}
 				.proprice{
 					font-size: 0.26rem;
-				    color: #000;
-				    /* margin-bottom: 0.05rem; */
-				    margin-right: 0.1rem;
-				    margin-left: 0.3rem;
-				}
-				.proinfo{
-					color: #808080;
-				    font-size: 0.22rem;
-				    overflow: hidden;
-				    text-overflow: ellipsis;
-				    white-space: nowrap;
-				    width: 80%;
-				    margin-left: 0.3rem;
 				}
 			}
 		}
@@ -436,6 +418,5 @@ export default {
 		    color: #fff;
 		}
 	}
-	
 }
 </style>

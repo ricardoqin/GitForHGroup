@@ -1,10 +1,8 @@
 <template>
 	<div>
-		detail
 	<div class="sortdetail" v-if="productinfo.length">
 		<!-- 回到顶部 -->
 		<backTop></backTop>
-
 		<!-- 底部固定模块 -->
 		<div class="bottomarea">
 			<ul>
@@ -129,9 +127,10 @@
 			<img src="../assets/icon-service.png" alt="">
 		</div>
 	</div>
+</div>
 </template>
 
-<script>       
+<script>   
 import axios from 'axios';
 import router from '../router';
 import backTop from './backTop';
@@ -141,6 +140,7 @@ export default {
 
   data () {
     return {
+
     	productinfo:[],
     	prosmallimg:[],
     	selectioninfo:[],
